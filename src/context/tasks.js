@@ -3,16 +3,8 @@ import { createContext, useState } from 'react';
 const TasksContext = createContext();
 
 function Provider({ children }) {
-   const [count, setCount] = useState(5);
 
-   const valueToShare = {
-      count,
-      incrementCount: () => {
-         setCount(count + 1);
-      },
-   }
-
-   return <TasksContext.Provider value={valueToShare}>
+   return <TasksContext.Provider value={{}}>
       {children}
    </TasksContext.Provider>
 }
