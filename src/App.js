@@ -1,57 +1,15 @@
 //import Task from "./components/Task";
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect, useContext } from 'react';
 import TaskCreate from "./components/TaskCreate";
 import TaskList from "./components/TaskList";
+import TasksContext from './context/tasks';
 
 function App() {
-   const [tasks, setTasks] = useState([]);
-
-   const fetchTasks = async () => {
-      const response = await axios.get('http://localhost:4000/tasks');
-      setTasks(response.data);
-   };
+   const { fetchTasks } = useContext(TasksContext);
 
    useEffect(() => {
       fetchTasks();
    }, []);
-
-   const editTaskById = async (id, newName) => {
-      //second param is the request body
-      const response = await axios.put(`http://localhost:4000/tasks/${id}`, {
-         name: newName
-      });
-
-      console.log(response);
-
-      const updatedTasks = tasks.map((task) => {
-         if (task.id === id) {
-            return { ...task, ...response.data };
-         }
-
-         return task;
-      });
-
-      setTasks(updatedTasks);
-   };
-
-   const deleteTaskById = async (id) => {
-      await axios.delete(`http://localhost:4000/tasks/${id}`);
-
-      const updatedTasks = tasks.filter((task) => {
-         return task.id !== id;
-      });
-
-      setTasks(updatedTasks);
-   };
-
-   const createTask = async (name) => {
-      //second argument of axios.post() is the request body
-      const response = await axios.post('http://localhost:4000/tasks', { name }); //name written instead of name: name since key and value are the same
-
-      const updatedTasks = [...tasks, response.data];
-      setTasks(updatedTasks);
-   };
 
    //обектите трябва да имат и пропс deadline и completed
    // const taskObjects = [
@@ -77,10 +35,10 @@ function App() {
          <div className="app-container">
             <section>
                {/* here deleteTAskById is just being passed to the child component, so that it can be called there */}
-               <TaskList tasks={tasks} onEdit={editTaskById} onDelete={deleteTaskById} />
+               <TaskList />
             </section>
          </div>
-         <TaskCreate onCreate={createTask} />
+         <TaskCreate />
       </div>
    );
 }
