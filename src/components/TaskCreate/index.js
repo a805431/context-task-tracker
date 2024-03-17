@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import TasksContext from '../context/tasks';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { StyledDiv } from './style.css';
 import { StyledForm } from './style.css';
 import { StyledH3 } from './style.css';
 
-function TaskCreate({ onCreate }) {
+function TaskCreate() {
    const [taskName, setTaskName] = useState('');
+   const { createTask } = useContext(TasksContext);
 
    const handleChange = (event) => {
       setTaskName(event.target.value);
@@ -14,7 +16,7 @@ function TaskCreate({ onCreate }) {
 
    const handleSubmit = (event) => {
       event.preventDefault();
-      onCreate(taskName);
+      createTask(taskName);
       setTaskName('');
    };
 

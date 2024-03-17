@@ -46,7 +46,15 @@ function Provider({ children }) {
       setTasks(updatedTasks);
    };
 
-   return <TasksContext.Provider value={{}}>
+   const valueToShare = {
+      tasks,
+      deleteTaskById,
+      editTaskById,
+      createTask,
+      fetchTasks
+   };
+
+   return <TasksContext.Provider value={valueToShare}>
       {children}
    </TasksContext.Provider>
 }
