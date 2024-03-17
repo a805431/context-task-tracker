@@ -1,8 +1,10 @@
 //import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import TasksContext from '../context/tasks';
 
 function TaskEdit({ task, onSubmit }) {
    const [title, setTitle] = useState(task.name);
+   const { editTaskById } = useContext(TasksContext);
 
    const handleChange = (event) => {
       setTitle(event.target.value);
@@ -11,10 +13,8 @@ function TaskEdit({ task, onSubmit }) {
    const handleSubmit = (event) => {
       event.preventDefault();
 
-      onSubmit(task.id, title); //the new task name is the title the user is changing, 
-      //which is being displayed in the input field 
-      //and contained by the useState
-      //in the TaskEdit component
+      onSubmit();
+      editTaskById(task.id, title);
    };
 
    return (<form className="task-edit" onSubmit={handleSubmit}>

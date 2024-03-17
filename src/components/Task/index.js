@@ -1,20 +1,21 @@
 import { StyledDiv } from "./style.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import TasksContext from '../context/tasks';
 import TaskEdit from "../TaskEdit"
 
-function Task({ task, onEdit, onDelete }) {
+function Task({ task }) {
    const [showEdit, setShowEdit] = useState(false);
+   const { deleteTaskById } = useContext(TasksContext);
 
    const handleDeleteClick = () => {
-      onDelete(task.id);
+      deleteTaskById(task.id);
    }
 
    const handleEditClick = () => {
       setShowEdit(!showEdit);
    }
-   const handleSubmit = (id, newName) => {
+   const handleSubmit = () => {
       setShowEdit(false);
-      onEdit(id, newName);
    }
 
    let content = (<>
