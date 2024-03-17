@@ -1,6 +1,6 @@
 //import Button from "react-bootstrap/Button";
 import { useState, useContext } from "react";
-import TasksContext from '../context/tasks';
+import TasksContext from '../../context/tasks';
 
 function TaskEdit({ task, onSubmit }) {
    const [title, setTitle] = useState(task.name);

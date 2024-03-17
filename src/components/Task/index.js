@@ -1,6 +1,6 @@
 import { StyledDiv } from "./style.css";
 import { useState, useContext } from "react";
-import TasksContext from '../context/tasks';
+import TasksContext from '../../context/tasks';
 import TaskEdit from "../TaskEdit"
 
 function Task({ task }) {
