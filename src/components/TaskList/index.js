@@ -1,11 +1,6 @@
-import { useContext } from 'react';
-import TasksContext from '../../context/tasks';
 import Task from "../Task";
 import { StyledDiv } from "./style.css";
-
-function useTasksContext() {
-   return useContext(TasksContext);
-}
+import useTasksContext from '../../hooks/use-tasks-context';
 
 function TaskList() {
    const { tasks } = useTasksContext();

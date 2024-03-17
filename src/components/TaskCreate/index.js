@@ -1,5 +1,5 @@
-import { useState, useContext } from 'react';
-import TasksContext from '../../context/tasks';
+import { useState } from 'react';
+import useTasksContext from '../../hooks/use-tasks-context';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { StyledDiv } from './style.css';
@@ -8,7 +8,7 @@ import { StyledH3 } from './style.css';
 
 function TaskCreate() {
    const [taskName, setTaskName] = useState('');
-   const { createTask } = useContext(TasksContext);
+   const { createTask } = useTasksContext();
 
    const handleChange = (event) => {
       setTaskName(event.target.value);

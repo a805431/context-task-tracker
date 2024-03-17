@@ -1,10 +1,10 @@
 //import Button from "react-bootstrap/Button";
-import { useState, useContext } from "react";
-import TasksContext from '../../context/tasks';
+import { useState } from "react";
+import useTasksContext from "../../hooks/use-tasks-context";
 
 function TaskEdit({ task, onSubmit }) {
    const [title, setTitle] = useState(task.name);
-   const { editTaskById } = useContext(TasksContext);
+   const { editTaskById } = useTasksContext();
 
    const handleChange = (event) => {
       setTitle(event.target.value);

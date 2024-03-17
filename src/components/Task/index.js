@@ -1,11 +1,11 @@
 import { StyledDiv } from "./style.css";
-import { useState, useContext } from "react";
-import TasksContext from '../../context/tasks';
+import { useState } from "react";
+import useTasksContext from "../../hooks/use-tasks-context";
 import TaskEdit from "../TaskEdit"
 
 function Task({ task }) {
    const [showEdit, setShowEdit] = useState(false);
-   const { deleteTaskById } = useContext(TasksContext);
+   const { deleteTaskById } = useTasksContext();
 
    const handleDeleteClick = () => {
       deleteTaskById(task.id);
