@@ -3,9 +3,11 @@ import TasksContext from '../../context/tasks';
 import Task from "../Task";
 import { StyledDiv } from "./style.css";
 
-function TaskList({ tasks, onEdit, onDelete }) {
+function TaskList() {
+   const { tasks } = useContext(TasksContext);
+
    const renderedTasks = tasks.map((task) => {
-      return <Task onEdit={onEdit} onDelete={onDelete} key={task.id} task={task} />;
+      return <Task key={task.id} task={task} />;
    });
 
    return (
