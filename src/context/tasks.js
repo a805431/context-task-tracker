@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useCallback } from 'react';
 import axios from 'axios';
 
 const TasksContext = createContext();
@@ -6,10 +6,10 @@ const TasksContext = createContext();
 function Provider({ children }) {
    const [tasks, setTasks] = useState([]);
 
-   const fetchTasks = async () => {
+   const fetchTasks = useCallback(async () => {
       const response = await axios.get('http://localhost:4000/tasks');
       setTasks(response.data);
-   };
+   }, []);
 
    const editTaskById = async (id, newName) => {
       //second param is the request body
